@@ -1,0 +1,15 @@
+flask
+fastapi
+python-multipart
+pillow
+tensorflow-serving-api
+matplotlib
+numpy
+requests
+python-dotenv
+langchain
+
+tensorflow==2.12.0
+uvicorn==0.23.2
+typing-inspect==0.9.0
+typing_extensions==4.7.1

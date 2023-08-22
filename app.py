@@ -2,6 +2,11 @@
 import numpy as np
 from flask import Flask, jsonify, request, render_template
 
+import speech_recognition as sr
+import pyttsx3
+import pywhatkit
+import datetime
+
 import numpy as np
 from io import BytesIO
 from PIL import Image
@@ -9,7 +14,7 @@ import tensorflow as tf
 import requests
 import json
 import os
-from langchain import PromptTemplate, HuggingFaceHub, LLMChain
+# from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -22,8 +27,6 @@ HUGGINGFACEHUB_APT_TOKEN = os.getenv("HUGGINGFACEHUB_APT_TOKEN")
 
 ANIMAL_API_TOKEN = os.getenv("ANIMAL_API_TOKEN")
 
-
-# endpoint = "http://localhost:8501/v1/models/potatoes_model:predict"
 
 Animal_danger_classification = {
     "Antelope": "Vulnerable",
@@ -245,6 +248,15 @@ def animal_data(predicted_class):
     return data
 
 
+engine = pyttsx3.init()
+voices = engine.getProperty('voices')
+engine.setProperty('voice', voices[1].id)
+
+
+def talk(text):
+    engine.say(text)
+
+
 @app.route("/predict", methods=["POST"])
 def predict():
     # print(request.files)
@@ -292,58 +304,6 @@ def predict():
             "response": data,
             "Danger Classification": classification
         })
-
-
-@app.route('/chatbot', methods=['POST'])
-def chat():
-    data = request.json
-    # Generate empty lists for generated and user.
-    # Assistant Response
-    print(data['text'])
-
-    # get user input
-
-    def get_text(data):
-
-        return data['text']
-
-    # Applying the user input box
-
-    def chain_setup():
-
-        template = """<|prompter|>{question}<|endoftext|>
-        <|assistant|>"""
-
-        prompt = PromptTemplate(
-            template=template, input_variables=["question"])
-
-        llm = HuggingFaceHub(
-            repo_id="OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5", model_kwargs={"max_new_tokens": 1200}, huggingfacehub_api_token=HUGGINGFACEHUB_APT_TOKEN)
-
-        llm_chain = LLMChain(
-            llm=llm,
-            prompt=prompt
-        )
-        return llm_chain
-
-    # generate response
-
-    def generate_response(question, llm_chain):
-        response = llm_chain.run(question)
-        return response
-
-    # load LLM
-    llm_chain = chain_setup()
-
-    # main loop
-    input_text = get_text(
-        data) + "tell me a first aid and provide me best possible solution in concise and simple manner for this situation and don't need to put new line sequece(/n)"
-    response = generate_response(input_text, llm_chain)
-    print(response)
-
-    return jsonify({
-        "response": response,
-    })
 
 
 if __name__ == '__main__':

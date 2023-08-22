@@ -8,6 +8,10 @@ import tensorflow as tf
 import requests
 import json
 import os
+import speech_recognition as sr
+import pyttsx3
+import pywhatkit
+import datetime
 from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 from dotenv import load_dotenv
 
@@ -248,11 +252,23 @@ def animal_data(predicted_class):
 
     data = response.text
     dict = json.loads(data)
-
+    print(type(dict), "knowing")
     data = [i for i in dict if i["name"].lower() ==
             predicted_class.lower()]
 
-    return data
+    return data[0]
+
+
+engine = pyttsx3.init()
+newVoiceRate = 120
+engine.setProperty('rate', newVoiceRate)
+voices = engine.getProperty('voices')
+engine.setProperty('voice', voices[0].id)
+
+
+def talk(text):
+    engine.say(text)
+    engine.runAndWait()
 
 
 @app.post("/predict")
@@ -286,6 +302,12 @@ async def predict(
 
     data = animal_data(predicted_class)
     classification = Animal_danger_classification[predicted_class]
+
+    print(data)
+    print(type(data))
+    information = f'It is a {predicted_class} with {confidence} percent confidence, It belongs to {data["taxonomy"]["kingdom"]} kingdom , {data["taxonomy"]["family"]} family and  {data["taxonomy"]["class"]} class, It can be found in {data["locations"]}, Its lifespan is mostly {data["characteristics"]["lifespan"]}, skin type {data["characteristics"]["skin_type"]} , and it is a {data["characteristics"]["diet"]}, An interesting fact about {predicted_class}: {data["characteristics"]["slogan"]} by danger classification of extinction it is {classification}'
+
+    talk(information)
 
     return {
         "class": predicted_class,

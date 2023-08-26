@@ -85,6 +85,11 @@ To run this project locally, please follow these steps:-
 
 ## Image
 
+You can try to upload file using post man in this format to get the desired response.
+
+<img width="797" alt="image" src="https://github.com/Rajarshi12321/Anidex/assets/94736350/b6fff51f-a6e4-4572-b7ad-855f4a453453">
+
+
 
 ## Contributing
 I welcome contributions to improve the functionality and performance of the app. If you'd like to contribute, please follow these guidelines:

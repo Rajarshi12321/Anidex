@@ -5,6 +5,8 @@ Welcome to the Anidex repository, which is a real life pokedex for knowing about
 Then the app will respond which possible animal is it with few basic details in both text in screen and as voice message like any voice assistant <br>
 (Right now The API is developed, you can try it out by cloning the repository, There is still work to do for frontend)
 
+Altough you need to setup the API keys for ANIMAL_API_TOKEN from the [free live animal api](https://api-ninjas.com/api/animals) you can  use it for free and HUGGINGFACEHUB_APT_TOKEN from [HUGGINGFACEHUB](https://huggingface.co/)
+
 ## Table of Contents
 
 - [Anidex](#anidex)

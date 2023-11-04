@@ -10,8 +10,6 @@ import json
 import os
 import speech_recognition as sr
 import pyttsx3
-# import pywhatkit
-import datetime
 from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 from dotenv import load_dotenv
 

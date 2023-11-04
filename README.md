@@ -34,8 +34,6 @@ These are some required packages for our program which are mentioned in the Requ
 - langchain
 - speechRecognition
 - pyttsx3
-- pywhatkit
-- pyAudio
 - tensorflow
 - uvicorn
 - typing-inspect

@@ -10,8 +10,6 @@ python-dotenv
 langchain
 speechRecognition
 pyttsx3
-pywhatkit
-pyAudio
 tensorflow
 uvicorn
 typing-inspect

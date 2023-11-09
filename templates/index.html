@@ -1,0 +1,63 @@
+<html>
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>My Sweet Home</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}" />
+      <link rel="icon" href="{{ url_for('static', filename='img/cat.ico') }}" />
+
+
+ 
+    </head>
+
+    <body>
+    
+
+      <img src="data:image/jpeg;base64,{{ img_data }}" class="container">
+        
+
+      </div>
+      <div class="description">
+        <b>Family: </b>{{family}}<br>
+        <b>Kingdom: </b>{{kingdom}}<br>
+
+        <b>Locations: </b>{{locations}}<br>
+
+        <b>Lifespan: </b>{{lifespan}}<br>
+
+        <b>Skin type:</b> {{skin_type}} <br>
+        <b>Diet: </b>{{diet}}<br>
+        <b>Danger Classification: </b>{{classification}}<br>
+
+        <b>Fun fact:</b> {{fun_fact}}  
+      </div>
+      
+      <div class='precise'><b>Accuracy : </b>{{accuracy}} </div>
+
+      
+
+      <div class='name_animal'><b>Name: </b>{{name}} </div>
+
+      
+      
+     
+    </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Make an AJAX request to generate speech after the page loads
+            $.ajax({
+                type: 'POST',
+                url: '/generate_speech',
+                data: {information: "{{information| safe}}" },
+                success: function(response) {
+                    console.log(response.message);
+                },
+                error: function(error) {
+                    console.error("Error generating speech:", error);
+                }
+            });
+        });
+    </script>
+  </html>
+  

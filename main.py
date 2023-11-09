@@ -1,5 +1,6 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+# from fastapi.templating import Jinja2templates
 import uvicorn
 import numpy as np
 from io import BytesIO
@@ -10,25 +11,13 @@ import json
 import os
 import speech_recognition as sr
 import pyttsx3
-from langchain import PromptTemplate, HuggingFaceHub, LLMChain
+# from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 from dotenv import load_dotenv
 
 load_dotenv()
 
 app = FastAPI()
-
-
-# origins = [
-#     "http://localhost",
-#     "http://localhost:3000",
-# ]
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=origins,
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+# templates = Jinja2templates(directory='templates')
 
 HUGGINGFACEHUB_APT_TOKEN = os.getenv("HUGGINGFACEHUB_APT_TOKEN")
 
@@ -226,9 +215,13 @@ ANIMAL_NAMES = ['Antelope',
 MODEL = tf.keras.models.load_model("animal_classification_model.h5")
 
 
-@app.get("/")
-async def ping():
-    return "Hello, I am alive"
+# @app.get("/")
+# async def ping():
+#     return "Hello, I am alive"
+
+# @app.get("/")
+# async def ping():
+#     render
 
 
 def read_file_as_image(data) -> np.ndarray:
@@ -314,54 +307,54 @@ async def predict(
         "Danger Classification": classification
     }
 
+# #
+# @app.post("/chatbot")
+# async def chat(data: dict):
+#     # Generate empty lists for generated and user.
+#     # Assistant Response
+#     print(data['text'])
 
-@app.post("/chatbot")
-async def chat(data: dict):
-    # Generate empty lists for generated and user.
-    # Assistant Response
-    print(data['text'])
+#     # get user input
 
-    # get user input
+#     def get_text(data):
 
-    def get_text(data):
+#         return data['text']
 
-        return data['text']
+#     # Applying the user input box
 
-    # Applying the user input box
+#     def chain_setup():
 
-    def chain_setup():
+#         template = """<|prompter|>{question}<|endoftext|>
+#         <|assistant|>"""
 
-        template = """<|prompter|>{question}<|endoftext|>
-        <|assistant|>"""
+#         prompt = PromptTemplate(
+#             template=template, input_variables=["question"])
 
-        prompt = PromptTemplate(
-            template=template, input_variables=["question"])
+#         llm = HuggingFaceHub(
+#             repo_id="OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5", model_kwargs={"max_new_tokens": 1200}, huggingfacehub_api_token=HUGGINGFACEHUB_APT_TOKEN)
 
-        llm = HuggingFaceHub(
-            repo_id="OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5", model_kwargs={"max_new_tokens": 1200}, huggingfacehub_api_token=HUGGINGFACEHUB_APT_TOKEN)
+#         llm_chain = LLMChain(
+#             llm=llm,
+#             prompt=prompt
+#         )
+#         return llm_chain
 
-        llm_chain = LLMChain(
-            llm=llm,
-            prompt=prompt
-        )
-        return llm_chain
+#     # generate response
 
-    # generate response
+#     def generate_response(question, llm_chain):
+#         response = llm_chain.run(question)
+#         return response
 
-    def generate_response(question, llm_chain):
-        response = llm_chain.run(question)
-        return response
+#     # load LLM
+#     llm_chain = chain_setup()
 
-    # load LLM
-    llm_chain = chain_setup()
+#     # main loop
+#     input_text = get_text(
+#         data) + "tell me a first aid and provide me best possible solution in concise and simple manner for this situation and don't need to put new line sequece(/n)"
+#     response = generate_response(input_text, llm_chain)
+#     print(response)
 
-    # main loop
-    input_text = get_text(
-        data) + "tell me a first aid and provide me best possible solution in concise and simple manner for this situation and don't need to put new line sequece(/n)"
-    response = generate_response(input_text, llm_chain)
-    print(response)
-
-    return response
+#     return response
 
 
 if __name__ == "__main__":

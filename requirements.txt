@@ -1,16 +1,17 @@
+tensorflow
+# PyAudio
 flask
 fastapi
 python-multipart
 pillow
 tensorflow-serving-api
-matplotlib
 numpy
 requests
 python-dotenv
+werkzeug
 langchain
 speechRecognition
 pyttsx3
-tensorflow
 uvicorn
 typing-inspect
 typing_extensions

@@ -1,0 +1,59 @@
+.stats{
+    display: none;
+    position: absolute;
+    top: 30%;
+    right: 35%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.stats h2{
+    text-decoration: underline;
+}
+
+.stats ul{
+    display: flex;
+    gap: 0.5em;
+}
+
+.heart{
+    border-radius: 5px;
+    padding: 0.1em;
+    background-color: red;
+}
+
+.fight{
+    border-radius: 5px;
+    padding: 0.1em;
+    background-color: burlywood;
+}
+
+.shield{
+    border-radius: 5px;
+    padding: 0.1em;
+    background-color: azure;
+}
+
+.velocity{
+    border-radius: 5px;
+    padding: 0.1em;
+    background-color: gold;
+}
+
+@media screen and (max-width: 536px) {
+    .stats{
+        right: 31%;
+    }
+}
+
+@media screen and (max-width: 463px) {
+    .stats{
+        font-size: 0.8em;
+    }
+}
+
+@media screen and (max-width: 355px) {
+    .stats{
+        font-size: 0.65em;
+    }
+}

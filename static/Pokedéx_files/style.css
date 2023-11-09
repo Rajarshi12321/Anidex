@@ -1,0 +1,252 @@
+.pokemom_image {
+    position: absolute;
+    width: 22%;
+    top: 35%;
+    right: 43%;
+}
+
+header {
+    background: gray;
+}
+
+.header-box {
+    font-size: 35px;
+    padding: 35px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+body {
+    background: #96a8d8;
+    /* background-size: 100%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+main {
+    display: inline-block;
+    position: relative;
+}
+
+.Pokedex {
+    width: 100%;
+}
+
+
+.Neon {
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #494949;
+    position: absolute;
+    top: 27%;
+    left: 20%;
+
+
+}
+
+
+.Neon-input-dragDrop {
+
+    padding: 24px;
+    background: #fff;
+    height: 185px;
+    border: 2px dashed #C8CBCE;
+    text-align: center;
+}
+
+
+
+.Neon-input-text h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.Neon-input-text span {
+    font-size: 12px;
+}
+
+.Neon-input-choose-btn.blue {
+    color: #008BFF;
+    border: 1px solid #008BFF;
+}
+
+.Neon-input-choose-btn {
+    display: inline-block;
+    padding: 8px 14px;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: bold;
+    color: #8d9496;
+    border-radius: 3px;
+    border: 1px solid #c6c6c6;
+    vertical-align: middle;
+    background-color: #fff;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.05);
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.name-number {
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    left: 34%;
+    top: 58%;
+    font-size: 120%;
+}
+
+.name {
+    text-transform: capitalize;
+}
+
+.input_search {
+    position: absolute;
+    padding: 7% 1%;
+    left: 22%;
+    bottom: 11.8%;
+    outline: none;
+    border: 3px solid black;
+    border-radius: 19%;
+    box-shadow: -1px 3px rgb(80, 79, 79);
+    background: rgb(194, 217, 173);
+}
+
+.buttons {
+    position: absolute;
+    right: 23.6%;
+    bottom: 26.2%;
+    outline: none;
+    width: 18%;
+    display: flex;
+    ;
+}
+
+.btn-up {
+    position: absolute;
+    right: 32.2%;
+    bottom: 30.6%;
+    transform: rotate(90deg);
+}
+
+.button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-size: 80%;
+}
+
+.button:last-child {
+    margin-left: 4.4em;
+}
+
+.button:hover {
+    scale: 1.1;
+}
+
+@media screen and (max-width: 570px) {
+    .button:last-child {
+        margin-left: 4.0em;
+    }
+}
+
+@media screen and (max-width: 536px) {
+    .name-number {
+        left: 34%;
+        top: 58%;
+        font-size: 110%;
+    }
+
+    .btn-up {
+        right: 32%;
+        bottom: 30.6%;
+    }
+
+    .button:last-child {
+        margin-left: 3.2em;
+    }
+}
+
+@media screen and (max-width: 476px) {
+    .input_search {
+        left: 19%;
+        padding: 7% 0;
+    }
+
+    .button:last-child {
+        margin-left: 2.5em;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .type {
+        left: 22%;
+        font-size: 0.8em;
+    }
+
+    .name-number {
+        left: 33.2%;
+        font-size: 95%;
+    }
+
+    .input_search {
+        bottom: 10%;
+        left: 15%;
+        padding: 8% 0;
+    }
+
+    .btn-up {
+        right: 32%;
+        bottom: 30%;
+    }
+
+    .buttons {
+        bottom: 25.5%;
+    }
+
+    .button:last-child {
+        margin-left: 2.1em;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .name-number {
+        font-size: 90%;
+    }
+
+    .input_search {
+        bottom: 10%;
+        left: 12%;
+        padding: 8% 0;
+    }
+
+    .btn-up {
+        right: 31.5%;
+    }
+
+    .button:last-child {
+        margin-left: 1.8em;
+    }
+}
+
+@media screen and (max-width: 344px) {
+    .name-number {
+        font-size: 90%;
+    }
+
+    .input_search {
+        bottom: 10%;
+        left: 12%;
+        padding: 8% 0;
+    }
+
+    .button:last-child {
+        margin-left: 1.5em;
+    }
+}

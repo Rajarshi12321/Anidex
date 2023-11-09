@@ -1,11 +1,12 @@
 # main.py
 import numpy as np
 from flask import Flask, jsonify, request, render_template
+from werkzeug.utils import secure_filename
 
-import speech_recognition as sr
+import pyaudio
 import pyttsx3
-import pywhatkit
-import datetime
+
+import base64
 
 import numpy as np
 from io import BytesIO
@@ -21,6 +22,10 @@ load_dotenv()
 
 
 app = Flask(__name__)
+
+upload_folder = os.path.join('static', 'img')
+
+app.config['UPLOAD'] = upload_folder
 
 
 HUGGINGFACEHUB_APT_TOKEN = os.getenv("HUGGINGFACEHUB_APT_TOKEN")
@@ -217,9 +222,35 @@ ANIMAL_NAMES = ['Antelope',
 MODEL = tf.keras.models.load_model("animal_classification_model.h5")
 
 
+# @app.route('/', methods=['GET'])
+# def ping():
+#     return "Hello, I am alive"
+
+
+@app.route('/see', methods=['GET'])
+def see():
+    return render_template("Pokedex.html")
+
+
+@app.route('/index', methods=['GET'])
+def index():
+    return render_template("index.html")
+
+
 @app.route('/', methods=['GET'])
-def ping():
-    return "Hello, I am alive"
+def home():
+    return render_template("home.html")
+
+
+@app.route('/generate_speech', methods=['POST'])
+def generate_speech():
+    information = request.form.get('information')
+    print(information)
+
+    # Generate speech using pyttsx3
+    talk(information)
+
+    return jsonify({"message": "Speech generated successfully"})
 
 
 def read_file_as_image(data) -> np.ndarray:
@@ -233,7 +264,6 @@ def animal_data(predicted_class):
     response = requests.get(
         api_url, headers={'X-Api-Key': ANIMAL_API_TOKEN})
     if response.status_code == requests.codes.ok:
-        # print(response.text)
         pass
 
     else:
@@ -242,24 +272,30 @@ def animal_data(predicted_class):
     data = response.text
     dict = json.loads(data)
 
+    data = response.text
+    dict = json.loads(data)
+    # print(type(dict), "knowing")
     data = [i for i in dict if i["name"].lower() ==
             predicted_class.lower()]
 
-    return data
-
-
-engine = pyttsx3.init()
-voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[1].id)
+    return data[0]
 
 
 def talk(text):
+    engine = pyttsx3.init()
+    newVoiceRate = 120
+    engine.setProperty('rate', newVoiceRate)
+    voices = engine.getProperty('voices')
+    engine.setProperty('voice', voices[0].id)
+    print("started speech")
     engine.say(text)
+    engine.runAndWait()
+    print("make speech stop")
+    engine.stop()
 
 
 @app.route("/predict", methods=["POST"])
 def predict():
-    # print(request.files)
     if "file" not in request.files:
         return jsonify({"error": "No file provided"}), 400
 
@@ -275,6 +311,10 @@ def predict():
     # pass
     image = read_file_as_image(bytes)
     print(image, "hey")
+
+    data = BytesIO()
+    image.save(data, "JPEG")
+    encoded_img_data = base64.b64encode(data.getvalue())
 
     if file:
 
@@ -297,17 +337,24 @@ def predict():
 
         data = animal_data(predicted_class)
         classification = Animal_danger_classification[predicted_class]
+        # print(data)
+        # print(type(data))
+        information = f'It is a {predicted_class} with {confidence} percent confidence, It belongs to {data["taxonomy"]["kingdom"]} kingdom and {data["taxonomy"]["family"]} family , It can be found in {data["locations"]}, Its lifespan is mostly {data["characteristics"]["lifespan"]}, skin type {data["characteristics"]["skin_type"]} , and it is a {data["characteristics"]["diet"]}, An interesting fact about {predicted_class}: {data["characteristics"]["slogan"]} by danger classification of extinction it is {classification}'
 
-        return jsonify({
-            "class": predicted_class,
-            "confidence": float(confidence),
-            "response": data,
-            "Danger Classification": classification
-        })
+        # talk(information)
+
+        return render_template("index.html", information=information,  img_data=encoded_img_data.decode('utf-8'),  classes=data["taxonomy"]["class"], family=data["taxonomy"]["family"], kingdom=data["taxonomy"]["kingdom"], locations=data["locations"], lifespan=data["characteristics"]["lifespan"], skin_type=data["characteristics"]["skin_type"], diet=data["characteristics"]["diet"], fun_fact=data["characteristics"]["slogan"], accuracy=confidence, name=predicted_class, classification=classification)
+
+        # return jsonify({
+        #     "class": predicted_class,
+        #     "confidence": float(confidence),
+        #     "response": data,
+        #     "Danger Classification": classification
+        # })
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", threaded=True, debug=True)
+    app.run(host="0.0.0.0", debug=True)
 
 '''
 These are some of the animals whose exact data is not available in the api

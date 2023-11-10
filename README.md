@@ -2,10 +2,9 @@
 # Anidex
 
 Welcome to the Anidex repository, which is a real life pokedex for knowing about animals on the spot with scanning or clicking the picture of the animal.
-Then the app will respond which possible animal is it with few basic details in both text in screen and as voice message like any voice assistant <br>
-(Right now The API is developed, you can try it out by cloning the repository, There is still work to do for frontend)
+Then the app will respond which possible animal is it with few basic details in both text in screen and as voice message like any voice assistant <be>
 
-Altough you need to setup the API keys for ANIMAL_API_TOKEN from the [free live animal api](https://api-ninjas.com/api/animals) you can  use it for free and HUGGINGFACEHUB_APT_TOKEN from [HUGGINGFACEHUB](https://huggingface.co/)
+You need to setup the API keys for ANIMAL_API_TOKEN from the [free live animal api](https://api-ninjas.com/api/animals) you can  use it for free and HUGGINGFACEHUB_APT_TOKEN from [HUGGINGFACEHUB](https://huggingface.co/)
 
 ## Table of Contents
 
@@ -59,14 +58,14 @@ To run this project locally, please follow these steps:-
 
 2. Activating the env
   
-    ```shell
-    conda activate <your-env-name> 
-    ```
+   ```shell
+   conda activate <your-env-name> 
+   ```
 
 3. Install the required dependencies by running:
    ```shell
-    pip install -r requirements.txt.
-    ``` 
+   pip install -r requirements.txt
+   ``` 
    Ensure you have Python installed on your system (Python 3.9 or higher is recommended).<br />
    Once the dependencies are installed, you're ready to use the project.
 
@@ -74,18 +73,20 @@ To run this project locally, please follow these steps:-
 
 4. Run the Flask app: Execute the following code in your terminal.
    ```shell  
-    python main.py 
-    ```
+   python app.py 
+   ```
    
 
-5. Access the app: Open your web browser and navigate to http://localhost:8000/predict to use the Anidex app for uploading image file.
+5. Access the app: Open your web browser and navigate to http://localhost:5000/ to use the Anidex app for uploading image file.
 
 
 ## Image
 
-You can try to upload file using post man in this format to get the desired response.
+Home Page:
+![image](https://github.com/Rajarshi12321/Anidex/assets/94736350/a011627b-70aa-4daa-a8ab-e8c8e76bb588)
 
-<img width="797" alt="image" src="https://github.com/Rajarshi12321/Anidex/assets/94736350/b6fff51f-a6e4-4572-b7ad-855f4a453453">
+Prediction Result Page:
+![image](https://github.com/Rajarshi12321/Anidex/assets/94736350/7d02e7d1-fe51-4a8c-9f33-5d46ad2eb6ff)
 
 
 

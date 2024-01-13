@@ -80,7 +80,7 @@ To run this project locally, please follow these steps:-
 5. Access the app: Open your web browser and navigate to http://localhost:5000/ to use the Anidex app for uploading image file.
 
 
-## Image
+## Image and Videos
 
 Home Page:
 ![image](https://github.com/Rajarshi12321/Anidex/assets/94736350/a011627b-70aa-4daa-a8ab-e8c8e76bb588)
@@ -89,7 +89,9 @@ Prediction Result Page:
 ![image](https://github.com/Rajarshi12321/Anidex/assets/94736350/7d02e7d1-fe51-4a8c-9f33-5d46ad2eb6ff)
 
 
-[![Watch the video](<img width="529" alt="image" src="https://github.com/Rajarshi12321/Anidex/assets/94736350/d148e2f2-fc00-43f9-a717-671bd7e23b95">)](https://youtu.be/geGlNDZqEJ8)
+Watch the video:
+[![Watch the video](https://github.com/Rajarshi12321/Anidex/assets/94736350/5b2746a2-c3ed-4cd9-8633-be6ef0ea3779>
+)](https://youtu.be/geGlNDZqEJ8)
 
 
 

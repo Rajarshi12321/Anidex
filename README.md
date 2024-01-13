@@ -89,6 +89,9 @@ Prediction Result Page:
 ![image](https://github.com/Rajarshi12321/Anidex/assets/94736350/7d02e7d1-fe51-4a8c-9f33-5d46ad2eb6ff)
 
 
+[![Watch the video](<img width="529" alt="image" src="https://github.com/Rajarshi12321/Anidex/assets/94736350/d148e2f2-fc00-43f9-a717-671bd7e23b95">)](https://youtu.be/geGlNDZqEJ8)
+
+
 
 ## Contributing
 I welcome contributions to improve the functionality and performance of the app. If you'd like to contribute, please follow these guidelines:

@@ -29,8 +29,7 @@ body {
   position: fixed;
   height: 28%;
   top: 31%;
-  /* top: 35%; */
-  left: 27%;
+  left: 24%;
 }
 
 .pokedex {
@@ -41,14 +40,14 @@ body {
 
   width: 300px;
   position: fixed;
-  top: 32%;
-  right: 20%;
+  top: 29%;
+  right: 21%;
 
 
 }
 
 .precise {
-  bottom: 11%;
+  bottom: 8%;
   position: fixed;
   right: 36%;
   width: 7%;
@@ -63,7 +62,7 @@ body {
 
 .name_animal {
   position: fixed;
-  bottom: 15%;
+  bottom: 13%;
   left: 26%;
 }
 

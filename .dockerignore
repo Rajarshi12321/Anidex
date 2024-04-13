@@ -23,6 +23,7 @@ anidex-y
 animals/**/*
 animals/*
 animals
+
 *.png
 *.jpeg
 *.jpg
